@@ -1,3 +1,21 @@
+/*
+Example code was obtained in the Arduino IDE and can be found by:
+File -> Examples -> Example for Arduino UNO R4 WiFi -> WiFiS3 -> WiFiUdpSendReceiveString
+The code was edited and adapted to be used for the telepresence robot
+  
+This was mentioned in the original code:
+----------------------------------------------------------------------------------------
+WiFi UDP Send and Receive String
+
+This sketch waits for a UDP packet on localPort using the WiFi module.
+When a packet is received an Acknowledge packet is sent to the client on port remotePort
+
+created 30 December 2012
+by dlf (Metodo2 srl)
+----------------------------------------------------------------------------------------
+*/
+
+
 #include <WiFiS3.h>
 #include<Arduino.h>
 int status = WL_IDLE_STATUS;
