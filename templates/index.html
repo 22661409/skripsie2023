@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        .forward {
+            height: 5%;
+            width: 5%;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 35%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .left {
+            height: 5%;
+            width: 5%;
+            margin: 0;
+            position: absolute;
+            top: 55%;
+            left: 30%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .right {
+            height: 5%;
+            width: 5%;
+            margin: 0;
+            position: absolute;
+            top: 55%;
+            left: 40%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .backward {
+            height: 5%;
+            width: 5%;
+            margin: 0;
+            position: absolute;
+            top: 60%;
+            left: 35%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .toggle {
+            height: 5%;
+            margin: 0;
+            position: absolute;
+            top: 55%;
+            left: 65%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <button id="forwardButton" class="forward">↑</button>
+    <button id="leftButton" class="left">↶</button>
+    <button id="rightButton" class="right">↷</button>
+    <button id="backwardButton" class="backward">↓</button>
+    <button id="toggleButton" class="toggle">CHARGE</button>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            forward_on = false;
+            reverse_on = false;
+            left_on = false;
+            right_on = false;
+            $("#forwardButton").on("mousedown", function () {
+                if (!forward_on) {
+                    $.get("/forward_pressed");
+                    forward_on = true;
+                }
+            });
+            $("#forwardButton").on("mouseup mouseout", function () {
+                if (forward_on) {
+                    $.get("/forward_released");
+                    forward_on = false;
+                }
+            });
+            $("#backwardButton").on("mousedown", function () {
+                if (!reverse_on) {
+                    $.get("/reverse_pressed");
+                    reverse_on = true;
+                }
+            });
+            $("#backwardButton").on("mouseup mouseout", function () {
+                if (reverse_on) {
+                    $.get("/reverse_released");
+                    reverse_on = false;
+                }
+            });
+            $("#leftButton").on("mousedown", function () {
+                console.log("Left button mousedown event triggered.");
+                if (!left_on) {
+                    $.get("/rotate_left_pressed");
+                    left_on = true;
+                }
+            });
+            $("#leftButton").on("mouseup mouseout", function () {
+                if (left_on) {
+                    $.get("/rotate_left_released");
+                    left_on = false;
+                }
+            });
+            $("#rightButton").on("mousedown", function () {
+                console.log("Right button mousedown event triggered.");
+                if (!right_on) {
+                    $.get("/rotate_right_pressed");
+                    right_on = true;
+                }
+            });
+            $("#rightButton").on("mouseup mouseout", function () {
+                if (right_on) {
+                    $.get("/rotate_right_released");
+                    right_on = false;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#toggleButton").click(function () {
+                $.get("/toggle");
+            });
+        });
+    </script>
+</body>
+
+</html>
