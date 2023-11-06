@@ -3,7 +3,7 @@ import socket
 import time as t
 import math
 
-arduino_ip = "192.168.0.143"  # Replace with your Arduino's IP address
+arduino_ip = ""  # Your Arduino's IP address
 arduino_port = 2390
 
 udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
